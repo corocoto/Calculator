@@ -1,10 +1,17 @@
-# Calculator
-Calculator on JS
-<h3> Short description</h3>
-This program allows you to perform various mathematical calculations.
-
-<h3>Technologies</h3>
-The calculator is written on HTML, CSS and JavaScript. In CSS, I used the flexbox module.
-
-<h3>Conclusion</h3>
-This is my first web-application, laid out on github. Therefore, I will be very grateful to your advice and feedback.
+<h1>Калькулятор на JS</h1>
+<nav>
+  <ul>
+    <li>
+      <h3>Описание</h3>
+      <img src="https://user-images.githubusercontent.com/37180024/50373589-72566580-05f2-11e9-81f0-301241d3795b.jpg" align="right" width="300">
+      <p align="left">Это веб калькулятор, написанный на JavaScript, имитирующий работу обычного карманного калькулятора. Он обеспечивает основные и дополнительные математические функции, необходимые как в работе, так и в учебе.</p>
+      <li>
+        <h3>Инструкция по использованию</h3>
+        <p>Для того, чтобы начать использовать данное приложение необходимо скачать все необходимые файлы. Для этого на странице репозитория нужно нажать на кнопку "Clone or download". После этого появится окошко, в котором следует нажать на кнопку "Download ZIP".</p>
+        <p>Полсе того, как скачается zip-архив, его необходимо распаковать. После распаковки открываем папку "Calculator-master" и открываем файл "index.html".
+          <li>
+            <h3>Обратная связь</h3>
+            <p>Если вы хотите поделиться советом или задать какой-то вопрос, пишите мне на электоронную почту.</p>
+            <p>Если же вы нашли баг или у вас возникли вопросы, создайте раздел в "Issue" на GitHub или же просто свяжитесь со мной.</p>
+     </ul>
+</nav>
