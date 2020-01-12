@@ -34,9 +34,12 @@ body{
     background: var(--blue-gray-color);
     display: grid;
     grid-template: 50% 50%/100%;
+    padding: 0 var(--large-fs);
+    overflow: hidden;
+    width: 100%;
 }
 
-.container, #result, #math, .btns div{
+.container, #result, #math{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,22 +47,23 @@ body{
 
 #result{
     font-size: var(--large-fs);
+    overflow: hidden;
 }
 
 .btns{
-    font-size: var(--standard-fs);
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(5, 20%);
 }
 
-.btns div{
+button{
     font-size: var(--standard-fs);
     border: 1px solid var(--light-blue-purple-color);
     transition: background .5s ease-in-out;
+    background: transparent;
+    outline: none;
 }
 
-.btns div:hover{
+button:hover{
     background: var(--blue-color);
-    cursor: pointer;
 }
