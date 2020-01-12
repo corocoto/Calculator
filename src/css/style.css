@@ -1,56 +1,69 @@
+@import "palette.css";
+@import "font-sizes.css";
+@import "fonts.css";
+
 *{
-    font-family: "Century Gothic",Century,Arial,sans-serif;
+    font-family: var(--century-gothic);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #faffff;
+    color: var(--white-color);
     font-weight: bold;
 }
+
+body{
+    font-size: 16px;
+}
+
 .container{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#4cd4ee, #b277ef);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: var(--blue-purple-gradient);
 }
+
 .calc{
     display: grid;
     grid-template: 200px 400px/400px;
-    box-shadow: rgba(0,0,0,0.7) 5px 7px 30px 2px;;
+    box-shadow: var(--box-shadow-color) 5px 7px 30px 2px;
 }
+
 .display{
-    background: #292d4b;
+    background: var(--blue-gray-color);
     display: grid;
     grid-template: 50% 50%/100%;
+    padding: 0 var(--large-fs);
+    overflow: hidden;
+    width: 100%;
 }
-#result,
-#math{
+
+.container, #result, #math{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 #result{
-    font-size: 35px;
+    font-size: var(--large-fs);
+    overflow: hidden;
 }
+
 .btns{
-    font-size: 16px;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(5, 20%);
 }
-.btns div{
-    font-size: 16px;
-    border: .5px solid #97aefc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+button{
+    font-size: var(--standard-fs);
+    border: 1px solid var(--light-blue-purple-color);
     transition: background .5s ease-in-out;
+    background: transparent;
+    outline: none;
 }
-.btns div:hover{
-    background: #5db5f4;
-    cursor: pointer;
+
+button:hover{
+    background: var(--blue-color);
 }
