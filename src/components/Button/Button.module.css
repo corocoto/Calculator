@@ -1,0 +1,11 @@
+.Button{
+    font-size: var(--standard-fs);
+    border: 1px solid var(--light-blue-purple-color);
+    transition: background .5s ease-in-out;
+    background: transparent;
+    outline: none;
+}
+
+button:hover {
+    background: var(--blue-color);
+}

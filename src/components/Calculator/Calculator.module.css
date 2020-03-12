@@ -1,0 +1,11 @@
+.Calculator{
+    display: grid;
+    grid-template: 200px 400px/400px;
+    box-shadow: var(--box-shadow-color) 5px 7px 30px 2px;
+}
+
+.btnsBlock{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(5, 20%);
+}
