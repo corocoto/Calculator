@@ -27,15 +27,11 @@ export default class Calculator extends Component {
         };
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        // if (nextState.currentVal !== this.state.currentVal) {
-            return true;
-        // }
-        // if (nextState.operation) {
-        //
-        // }
-        // return false;
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        !this.state.currentVal && this.setState({currentVal: '0'});
+        !this.state.result && this.setState({result: '0'});
     }
+
 
 
     componentWillUnmount() {
@@ -52,8 +48,7 @@ export default class Calculator extends Component {
         return {
             operation: null,
             currentVal: 0,
-            result: 0,
-            math: null
+            prevVal: 0,
         }
     }
 
@@ -63,10 +58,10 @@ export default class Calculator extends Component {
      * @param {number | string} symbol
      */
     writeNum(symbol){
-        const value = (symbol === '.' || this.state.currentVal)
-            ? this.state.currentVal + symbol
+        const value = (symbol === '.' || `${this.state.currentVal}` !== '0')
+            ? this.state.currentVal  + symbol
             : symbol;
-        this.setState({currentVal: value});
+        Array.from(value).filter(item => item === '.').length<2 && this.setState({currentVal: value});
     }
 
     /**
@@ -74,26 +69,29 @@ export default class Calculator extends Component {
      * @description
      */
     setPrevNumState(){
-        this.setState({currentVal: this.state.currentVal.slice(0, -1)});
+        this.setState({
+            currentVal: `${this.state.currentVal}`.slice(0, -1)
+        });
     }
 
     /**
      * @method
-     * @param {string} symbol
+     * @description
+     * @param {string} symbol - current choose math operation
      */
     choiceOperation(symbol){
-        let {operation, currentVal, result} = this.state;
+        let {operation, currentVal, prevVal} = this.state;
         if (['√','x²'].includes(symbol)){
-            currentVal = this.calcOperations[symbol](currentVal);
-            this.setState({currentVal});
+            currentVal = this.calcOperations[symbol](Number(currentVal) || prevVal);
+            operation === '=' ? this.setState({operation: null, currentVal}) : this.setState({currentVal});
             return;
         }
         if (operation){
-            currentVal = this.calcOperations[operation](result, currentVal);
+            currentVal = this.calcOperations[operation](prevVal, currentVal);
         }
         this.setState({
-            currentVal: symbol=== '=' ? currentVal : 0,
-            result: currentVal,
+            currentVal: 0,
+            prevVal: currentVal,
             operation: symbol
         });
     }
@@ -133,8 +131,7 @@ export default class Calculator extends Component {
         return (
             <div className={styles.Calculator}>
                 <Display
-                    math={this.math}
-                    result={this.state.currentVal}
+                    result={this.state.operation === '=' ? this.state.prevVal : this.state.currentVal}
                 />
                 <div className={styles.btnsBlock}>
                     {btnsArr}
