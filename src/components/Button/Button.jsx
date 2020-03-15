@@ -2,6 +2,18 @@ import React from 'react';
 import styles from './Button.module.css';
 import PropTypes from 'prop-types';
 
+/**
+ * @function
+ * @module /src/components/Button
+ * @description Button component
+ * @param {object} props - props object
+ * @example
+ *
+ * return <Button
+ *  value="Calculate"
+ *  onClick={() => this.clickEventHandler("Calculate")}
+ * />
+ */
 const Button = (props) =>{
     return <button
         className={styles.Button}

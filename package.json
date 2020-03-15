@@ -1,13 +1,15 @@
 {
-  "name": "calculator",
-  "description": "Calculator, that was been wrote on React library",
+  "name": "Calculator",
+  "description": "Calculator web application",
   "author": "Artem Gusev (CreativeRusBear) <gusev2014russia@mail.ru>",
   "keywords": [
-    "React",
-    "Calculator"
+    "react",
+    "calculator",
+    "web-application",
+    "web-app"
   ],
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
     "@babel/core": "7.8.4",

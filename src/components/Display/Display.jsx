@@ -2,7 +2,13 @@ import React from 'react';
 import styles from './Display.module.css';
 import PropTypes from 'prop-types';
 
-
+/**
+ * @function
+ * @module /src/components/Display
+ * @description Display component
+ * @param {object} props - props object
+ * @example <Display result="12345"/>
+ */
 const Display = (props) =>{
     const ariaLabel = "Current value is " + props.result;
     return (
