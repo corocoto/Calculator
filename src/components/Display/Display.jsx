@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 
 
 const Display = (props) =>{
+    const ariaLabel = "Current value is " + props.result;
     return (
         <div className={styles.Display}>
-            <span className={styles.result}>{props.result}</span>
+            <span
+                className={styles.result}
+                role="main"
+                aria-label={ariaLabel}
+            >{props.result}</span>
         </div>
     )
 };

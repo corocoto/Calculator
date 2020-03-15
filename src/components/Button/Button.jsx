@@ -6,6 +6,7 @@ const Button = (props) =>{
     return <button
         className={styles.Button}
         onClick={props.onClick}
+        aria-label={props.value}
     >{props.value}
     </button>
 };

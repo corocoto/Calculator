@@ -12,10 +12,29 @@ export default class Calculator extends Component {
     constructor(props) {
         super(props);
         this.state = this.initialState();
+        this.btnsVal = [
+            'C', '√', 'x²', '/',
+            '7', '8', '9', '*',
+            '4', '5', '6', '-',
+            '1', '2', '3', '+',
+            '.', '0', 'Del', '='
+        ];
+    }
+
+    keydownEventHandler({key}){
+        if (this.btnsVal.includes(key) ){
+            this.clickEventHandler(key);
+        }else if (key === 'Backspace'){
+            this.clickEventHandler('Del');
+        }else if (key === ','){
+            this.clickEventHandler('.');
+        }else if (key === 'Enter'){
+            this.clickEventHandler('=');
+        }
     }
 
     componentDidMount() {
-        // this.addEventListener();
+        document.addEventListener('keydown', this.keydownEventHandler.bind(this));
         this.calcOperations = {
             '/': (prevValue, currentValue) => prevValue / currentValue,
             '*': (prevValue, currentValue) => prevValue * currentValue,
@@ -27,17 +46,14 @@ export default class Calculator extends Component {
         };
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.keydownEventHandler.bind(this));
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         !this.state.currentVal && this.setState({currentVal: '0'});
         !this.state.result && this.setState({result: '0'});
     }
-
-
-
-    componentWillUnmount() {
-        // this.removeEventListener();
-    }
-
 
     /**
      * @method
@@ -114,14 +130,7 @@ export default class Calculator extends Component {
     }
 
     render() {
-        const btnsVal = [
-            'C', '√', 'x²', '/',
-            '7', '8', '9', '*',
-            '4', '5', '6', '-',
-            '1', '2', '3', '+',
-            '.', '0', 'Del', '='
-        ];
-        const btnsArr = btnsVal.map((val, index) => {
+        const btnsArr = this.btnsVal.map((val, index) => {
             return <Button
                 key={`${index}-${val}`}
                 value={val}
