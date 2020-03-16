@@ -30,7 +30,7 @@ This application is created using `React.js` library.
 
 ## Documentation
 
-You can find the **Calculator** documentation [on the website](https://creativerusbear.github.io/Cryptocurrency-Pice-Dashboard-App/).
+You can find the **Calculator** documentation [on the website](https://creativerusbear.github.io/Calculator/docs/).
 
 ## Changelog
 
