@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Calculator
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+**Calculator** is a PWA (Progressive Web Application), that allows to end user doing mathematics operation fast and simple, using for it keyboard or computer mouse (or touchpad maybe). 
 
-### `npm start`
+## About application
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This application is created using `React.js` library.
+ 
+## Instructions :clipboard:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Download application and unpack it;
+2. Move into unpack folder;
+3. Run `terminal` inside this folder;
+4. Run `npm install` or `yarn install` for install dependencies;
+5. After that, run one of the next commands: 
+    * `npm run start` or `yarn start` - for running the non-building project;
+    * `npm run-build`  or `yarn run-build` - for running the building project. 
 
-### `npm test`
+## Available commands:
+- ```npm run start``` or ```yarn start``` - launches and opens the non-building project in your browser;
+- ```npm run docs``` or ```yarn docs``` - generates documentation;
+- ```npm run build``` or ```yarn build``` - builds the application;
+- ```npm run-build``` or ```yarn run-build``` - launches building project.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## License
 
-### `npm run build`
+**Calculator** application is open-sourced software licensed under the MIT License (MIT). Please see [License File](LICENSE) for more information
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Documentation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+You can find the **Calculator** documentation [on the website](https://creativerusbear.github.io/Cryptocurrency-Pice-Dashboard-App/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Changelog
 
-### `npm run eject`
+Detailed changes for each release are documented in the [release notes](CHANGELOG.md).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Contributing
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I'm thanks all the people, that who contributed or who want to contribute to "Calculator" application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If you want to contribute, make sure to read the [Contributing Guide](CONTRIBUTING.md) before making a pull request, thanks.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Conclusion
 
-## Learn More
+If you still have questions about the work of this application :grey_question: or you have cool ideas for improvement :boom:, please write to me :email:.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you find a bug :bug:, please create an appropriate issue with detailed information about it :speech_balloon:.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Thanks!
