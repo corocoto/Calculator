@@ -1,4 +1,4 @@
-# Calculator
+# [Calculator](https://creativerusbear.github.io/Calculator/)
 
 ## Introduction
 
@@ -27,10 +27,6 @@ This application is created using `React.js` library.
 ## License
 
 **Calculator** application is open-sourced software licensed under the MIT License (MIT). Please see [License File](LICENSE) for more information
-
-## Documentation
-
-You can find the **Calculator** documentation [on the website](https://creativerusbear.github.io/Calculator/docs/).
 
 ## Changelog
 
