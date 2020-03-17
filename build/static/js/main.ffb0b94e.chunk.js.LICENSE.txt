@@ -1,8 +1,8 @@
 /**
- * @version v2.1.0
+ * @version v1.3.0
  * @file Calculator web application
  * @author Artem Gusev <gusev2014russia@mail.ru> (CreativeRusBear)
- * @copyright Artem Gusev 2019-present
+ * @copyright 2019-present Artem Gusev. All rights reserved.
  * @licence
  * MIT License
  *
