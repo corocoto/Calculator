@@ -102,8 +102,10 @@ export default class Calculator extends Component {
      * @description Set prevent value of `currentVal` state variable
      */
     setPrevNumState(){
-        this.setState({
-            currentVal: `${this.state.currentVal}`.slice(0, -1)
+        this.setState(state => {
+            return {
+                currentVal: `${state.currentVal}`.slice(0, -1)
+            }
         });
     }
 
