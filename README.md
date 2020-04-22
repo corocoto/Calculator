@@ -1,6 +1,6 @@
-# [Calculator](https://creativerusbear.github.io/Calculator/)
+# [Calculator](https://creativerusbear.github.io/Calculator/) :abacus:
 
-## Introduction
+## Introduction :label:
 
 **Calculator** is a PWA (Progressive Web Application), that allows to end user doing mathematics operation fast and simple, using for it keyboard or computer mouse (or touchpad maybe). 
 
@@ -18,21 +18,21 @@ This application is created using `React.js` library.
     * `npm run start` or `yarn start` - for running the non-building project;
     * `npm run-build`  or `yarn run-build` - for running the building project. 
 
-## Available commands:
+## Available commands: :receipt:
 - ```npm run start``` or ```yarn start``` - launches and opens the non-building project in your browser;
 - ```npm run docs``` or ```yarn docs``` - generates documentation;
 - ```npm run build``` or ```yarn build``` - builds the application;
 - ```npm run-build``` or ```yarn run-build``` - launches building project.
 
-## License
+## License :bookmark_tabs::copyright:
 
 **Calculator** application is open-sourced software licensed under the MIT License (MIT). Please see [License File](LICENSE) for more information
 
-## Changelog
+## Changelog :notebook_with_decorative_cover::date:
 
 Detailed changes for each release are documented in the [release notes](CHANGELOG.md).
 
-## Contributing
+## Contributing :octocat:
 
 I'm thanks all the people, that who contributed or who want to contribute to "Calculator" application.
 
