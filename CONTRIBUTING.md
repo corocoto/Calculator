@@ -20,7 +20,7 @@ fastest way to get your pull request merged in.**
         git branch --track pullpost base/master
         git checkout pullpost
 
-   Here 'pullpost' is the name of the branch.  Fell free to use whatever you want.
+   Here 'pullpost' is the name of the branch.  Feel free to use whatever you want.
 
 3. **Create your change branch**
    Once you are in ```<tracking branch>```, make sure it's up to date, then create
