@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import styles from './Calculator.module.css';
 
-import Display from '../../Display/Display';
+import Display from '../../UI/Display/Display';
 import Button from '../../UI/Button/Button';
 
 /**
