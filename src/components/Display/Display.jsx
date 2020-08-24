@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Display.module.css';
+import classes from './Display.module.css';
 import PropTypes from 'prop-types';
 
 /**
@@ -12,9 +12,9 @@ import PropTypes from 'prop-types';
 const Display = (props) =>{
     const ariaLabel = "Current value is " + props.result;
     return (
-        <div className={styles.Display}>
+        <div className={classes.Display}>
             <span
-                className={styles.result}
+                className={classes.result}
                 role="main"
                 aria-label={ariaLabel}
             >{props.result}</span>

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './App.module.css';
+import classes from './App.module.css';
 
-import Calculator from '../components/Calculator/Calculator';
+import Calculator from '../components/containers/Calculator/Calculator';
 
 /**
  * @function
@@ -9,12 +9,11 @@ import Calculator from '../components/Calculator/Calculator';
  * @description App component
  * @example ReactDOM.render(<App />, document.getElementById('root'));
  */
-function App() {
-  return (
-    <div className={styles.App}>
-      <Calculator/>
+const App = () => (
+    <div className={classes.App}>
+        <Calculator/>
     </div>
-  );
-}
+);
+
 
 export default App;
