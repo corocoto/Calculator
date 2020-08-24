@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './App.module.css';
 
-import Calculator from '../components/containers/Calculator/Calculator';
+import Calculator from './components/containers/Calculator/Calculator';
 
 /**
  * @function
