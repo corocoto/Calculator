@@ -1,138 +1,173 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {Component} from 'react';
 import styles from './Calculator.module.css';
 
-import Display from '../../UI/Display/Display';
-import Button from '../../UI/Button/Button';
+import Display from '../Display/Display';
+import Button from '../Button/Button';
 
 /**
  * @class
  * @module /src/components/Calculator
  * @description Calculator component
- * @example ```jsx <Calculator/>```
+ * @example ```<Calculator/>``
  */
-const Calculator = (props) => {
-    const [operation, setOperation] = useState(null);
-    const [currentVal, setCurrentVal] = useState(0);
-    const [prevVal, setPrevVal] = useState(0);
-    const btnsVal = [
+export default class Calculator extends Component {
+    /**
+     * @constructor
+     * @description Place where state, variables and etc are initialize.
+     * @param {object} props - props object
+     */
+    constructor(props) {
+        super(props);
+        this.state = this.initialState();
+        this.btnsVal = [
             'C', '√', 'x²', '/',
             '7', '8', '9', '*',
             '4', '5', '6', '-',
             '1', '2', '3', '+',
             '.', '0', 'Del', '='
-    ];
-
-    const btnsArr = btnsVal.map((val, index) =>
-        <Button
-            key={`${index}-${val}`}
-            value={val}
-            onClick={() => clickEventHandler(val)}
-        />
-    );
-
-    const calcOperations = {
-        '/': (prevValue, currentValue) => prevValue / currentValue,
-        '*': (prevValue, currentValue) => prevValue * currentValue,
-        '+': (prevValue, currentValue) => Number(prevValue) + Number(currentValue),
-        '-': (prevValue, currentValue) => prevValue - currentValue,
-        '=': currentValue => currentValue,
-        '√': currentValue => Math.sqrt(currentValue),
-        'x²': currentValue => currentValue**2
-    };
-
-    useEffect(() => {
-        document.addEventListener('keydown', keydownEventHandler);
-        return () => document.removeEventListener('keydown', keydownEventHandler);
-    });
+        ];
+        this.keydownEventHandler = this.keydownEventHandler.bind(this);
+    }
 
     /**
-     * @method
-     * @description Event handler, that allows input data using keyboard
+     * @method keydownEventHandler
+     * @description Event handler that allows input data using keyboard.
      * @param {string} key - name of button, that has been clicked
+     * @return {void}
      */
-    const keydownEventHandler = useCallback(({key}) => {
-        if (btnsVal.includes(key) ){
-            clickEventHandler(key);
+    keydownEventHandler({key}){
+        if (this.btnsVal.includes(key) ){
+            this.clickEventHandler(key);
         }else if (key === 'Backspace'){
-            clickEventHandler('Del');
+            this.clickEventHandler('Del');
         }else if (key === ','){
-            clickEventHandler('.');
+            this.clickEventHandler('.');
         }else if (key === 'Enter'){
-            clickEventHandler('=');
+            this.clickEventHandler('=');
         }
-    }, [btnsVal]);
+    }
 
-    useEffect(() => {
-        !currentVal && setCurrentVal('0');
-        !prevVal && setPrevVal('0');
-    }, [currentVal, prevVal]);
+    componentDidMount() {
+        document.addEventListener('keydown', this.keydownEventHandler);
+        this.calcOperations = {
+            '/': (prevValue, currentValue) => prevValue / currentValue,
+            '*': (prevValue, currentValue) => prevValue * currentValue,
+            '+': (prevValue, currentValue) => Number(prevValue) + Number(currentValue),
+            '-': (prevValue, currentValue) => prevValue - currentValue,
+            '=': currentValue => currentValue,
+            '√': currentValue => Math.sqrt(currentValue),
+            'x²': currentValue => currentValue**2
+        };
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.keydownEventHandler);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        !this.state.currentVal && this.setState({currentVal: '0'});
+        !this.state.result && this.setState({result: '0'});
+    }
 
     /**
-     * @method
-     * @description Method, that changes value of `currentVal` state variable
-     * @param {number | string} symbol - symbol, that we want to add for `currentVal` state variable
+     * @method initialState
+     * @description Method that returns initial state.
+     * @returns {Object} - initial state
      */
-    const writeNum = (symbol) => {
-        const value = (symbol === '.' || currentVal.toString() !== '0')
-            ? currentVal  + symbol
+    initialState() {
+        return {
+            operation: null,
+            currentVal: 0,
+            prevVal: 0,
+        }
+    }
+
+    /**
+     * @method writeNum
+     * @description Method that changes `currentVal` value.
+     * @param {number | string} symbol - symbol that will be add into `currentVal`
+     * @return {void}
+     */
+    writeNum(symbol){
+        const value = (symbol === '.' || `${this.state.currentVal}` !== '0')
+            ? this.state.currentVal  + symbol
             : symbol;
-        if (Array.from(value).filter(item => item === '.').length < 2){
-            setCurrentVal(value);
-        }
+        Array.from(value).filter(item => item === '.').length<2 && this.setState({currentVal: value});
     }
 
     /**
-     * @method
-     * @description Set prevent value of `currentVal` state variable
+     * @method setPrevNumState
+     * @description Set prevent value of `currentVal` state variable.
+     * @return {void}
      */
-    const setPrevNumState = () => setCurrentVal(`${currentVal}`.slice(0, -1));
+    setPrevNumState(){
+        this.setState(state => {
+            return {
+                currentVal: `${state.currentVal}`.slice(0, -1)
+            }
+        });
+    }
 
     /**
-     * @method
-     * @description Method, that find necessary operation for running math operation and changing current state
+     * @method choiceOperation
+     * @description Method that find necessary operation for running math operation and changing current state.
      * @param {string} symbol - current choose math operation
+     * @return {void}
      */
-    const choiceOperation = (symbol) => {
+    choiceOperation(symbol){
+        let {operation, currentVal, prevVal} = this.state;
         if (['√','x²'].includes(symbol)){
-            const currVal = calcOperations[symbol](Number(currentVal) || prevVal);
-            operation === '=' && setOperation(null);
-            setCurrentVal(currVal);
+            currentVal = this.calcOperations[symbol](Number(currentVal) || prevVal);
+            operation === '=' ? this.setState({operation: null, currentVal}) : this.setState({currentVal});
             return;
-        } else if (operation){
-            setPrevVal(calcOperations[operation](prevVal, currentVal));
-        }else {
-            setPrevVal(currentVal);
         }
-        setCurrentVal(0);
-        setOperation(symbol);
+        if (operation){
+            currentVal = this.calcOperations[operation](prevVal, currentVal);
+        }
+        this.setState({
+            currentVal: 0,
+            prevVal: currentVal,
+            operation: symbol
+        });
     }
 
     /**
-     * @method
+     * @method clickEventHandler
      * @description Running necessary method proceeding what button has been clicked.
-     * This necessary for changing state in the future
+     *
+     * This necessary for changing state in the future.
      * @param {string | number} symbol - name of button, that has been clicked
+     * @return {void}
      */
-    const clickEventHandler = (symbol) => {
+    clickEventHandler(symbol) {
         if (/(\d|\.)/.test(symbol)) {
-            writeNum(symbol);
+            this.writeNum(symbol);
         }else if (symbol === 'Del') {
-            setPrevNumState();
+            this.setPrevNumState();
         }else if (symbol === 'C') {
-            setOperation(null);
-            setCurrentVal(0);
-            setPrevVal(0);
+            this.setState(this.initialState());
         }else{
-            choiceOperation(symbol);
+            this.choiceOperation(symbol);
         }
     }
 
-    return (
-        <div className={styles.Calculator}>
-            <Display result={operation === '=' ? prevVal : currentVal}/>
-            <div className={styles.btnsBlock}>{btnsArr}</div>
-        </div>
-    );
+    render() {
+        const btnsArr = this.btnsVal.map((val, index) => {
+            return <Button
+                key={`${index}-${val}`}
+                value={val}
+                onClick={() => this.clickEventHandler(val)}
+            />
+        });
+        return (
+            <div className={styles.Calculator}>
+                <Display
+                    result={this.state.operation === '=' ? this.state.prevVal : this.state.currentVal}
+                />
+                <div className={styles.btnsBlock}>
+                    {btnsArr}
+                </div>
+            </div>
+        )
+    }
 }
-
-export default Calculator;

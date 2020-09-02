@@ -76,7 +76,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "node scripts/test.js --watchAll=false",
     "docs": "jsdoc -c jsdoc.json",
     "run-build": "serve -s build",
     "predeploy": "npm run build",
