@@ -9,7 +9,7 @@ configure({adapter: new Adapter()});
 
 describe('<Display>', () => {
     let wrapper;
-    beforeEach(() => wrapper = shallow(<Display/>));
+    beforeEach(() => wrapper = shallow(<Display />));
     it('should contains "Current value is undefined" as default value for aria-label attribute', () => {
         expect(wrapper.find('span').prop('aria-label')).toEqual('Current value is undefined');
     });
