@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  * @module /src/components/Display
  * @description Display component
  * @param {object} props - props object
- * @example <Display result="12345"/>
+ * @example ```<Display result="12345"/>```
  */
 const Display = (props) =>{
     const ariaLabel = "Current value is " + props.result;
