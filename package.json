@@ -154,8 +154,8 @@
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.3",
-    "jsdoc": "^3.6.3",
+    "enzyme-adapter-react-16": "^1.15.4",
+    "jsdoc": "^3.6.5",
     "prop-types": "^15.7.2"
   }
 }
