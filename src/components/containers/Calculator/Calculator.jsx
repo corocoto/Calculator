@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import styles from './Calculator.module.css';
 
-import Display from '../Display/Display';
-import Button from '../Button/Button';
+import Display from '../../UI/Display/Display';
+import Button from '../../UI/Button/Button';
 
 /**
  * @class

@@ -1,7 +1,7 @@
 /**
  * @version v1.3.0
  * @file Calculator web application
- * @author Artem Gusev <gusev2014russia@mail.ru> (CreativeRusBear)
+ * @author Artem Gusev <gusev2014russia@mail.ru> (corocoto)
  * @copyright 2019-present Artem Gusev. All rights reserved.
  * @licence
  * MIT License
@@ -28,14 +28,23 @@
  *
  */
 
-
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import rootReducer from './store/reducer/rootReducer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(rootReducer);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
