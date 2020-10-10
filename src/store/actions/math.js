@@ -24,7 +24,3 @@ export const exponentiation = value => ({
     type: actionTypes.EXPONENTIATION,
     value
 });
-
-export const getResult = () => ({
-    type: actionTypes.GET_RESULT
-});
