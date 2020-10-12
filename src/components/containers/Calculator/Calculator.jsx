@@ -3,6 +3,8 @@ import styles from './Calculator.module.css';
 
 import Display from '../../UI/Display/Display';
 import Button from '../../UI/Button/Button';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 /**
  * @class
@@ -10,7 +12,7 @@ import Button from '../../UI/Button/Button';
  * @description Calculator component
  * @example ```<Calculator/>``
  */
-export default class Calculator extends Component {
+class Calculator extends Component {
     /**
      * @constructor
      * @description Place where state, variables and etc are initialize.
@@ -171,3 +173,13 @@ export default class Calculator extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
