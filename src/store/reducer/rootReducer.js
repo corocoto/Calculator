@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     operation: null,
+    currentValue: 0,
     result: 0,
 };
 
@@ -19,6 +20,8 @@ const reducer = (state = initialState, action) => {
             return getResult(state, action);
         case actionTypes.CLEAR_ALL:
             return clearAll();
+        case actionTypes.BACKSPACE:
+            return backspace(state);
         default:
             return state;
     }
@@ -39,15 +42,22 @@ const calc = (state, action) => {
     }
 };
 
+const backspace = (state) => ({
+    ...state,
+    currentValue: state.currentValue.substring(0, state.length - 1),
+});
+
 const addOperation = (state, action) => ({
     ...state,
     operation: actionTypes.ADD,
+    currentValue: action.value,
     result: calc(state, action)
 });
 
 const subtractOperation = (state, action) => ({
     ...state,
     operation: actionTypes.SUBTRACT,
+    currentValue: action.value,
     result: calc(state, action)
 });
 
@@ -60,12 +70,14 @@ const multiplyOperation = (state, action) => ({
 const divideOperation = (state, action) => ({
     ...state,
     operation: actionTypes.DIVIDE,
+    currentValue: action.value,
     result: calc(state, action)
 });
 
 const getResult = (state, action) => ({
     ...state,
     operation: null,
+    currentValue: action.value,
     result: calc(state, action)
 });
 
