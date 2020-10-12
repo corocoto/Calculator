@@ -44,7 +44,7 @@ const calc = (state, action) => {
 
 const backspace = (state, value) => ({
     ...state,
-    currentValue: value.substring(0, value.length - 1),
+    currentValue: value.slice(0, -1),
 });
 
 const addOperation = (state, action) => ({
