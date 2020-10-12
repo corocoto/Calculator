@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CLEAR_ALL:
             return clearAll();
         case actionTypes.BACKSPACE:
-            return backspace(state);
+            return backspace(state, action.value);
         default:
             return state;
     }
@@ -42,9 +42,9 @@ const calc = (state, action) => {
     }
 };
 
-const backspace = (state) => ({
+const backspace = (state, value) => ({
     ...state,
-    currentValue: state.currentValue.substring(0, state.length - 1),
+    currentValue: value.substring(0, value.length - 1),
 });
 
 const addOperation = (state, action) => ({
