@@ -175,11 +175,20 @@ class Calculator extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    operation: state.operation,
+    currentValue: state.currentVal,
+    result: state.result
 });
 
 const mapDispatchToProps = dispatch => ({
-
+   onAdd: value => dispatch(actions.add(value)),
+   onSubtract: value => dispatch(actions.subtract(value)),
+   onMultiply: value => dispatch(actions.multiply(value)),
+   onDivide: value => dispatch(actions.divide(value)),
+   onPow: value => dispatch(actions.exponentiation(value)),
+   onClear: () => dispatch(actions.clearAll()),
+   onBackspace: value => dispatch(actions.backspace(value)),
+   onGetResult: value => dispatch(actions.getResult(value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
