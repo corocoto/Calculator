@@ -3,11 +3,13 @@ export {
     subtract,
     multiply,
     divide,
-    exponentiation
+    exponentiation,
+    squareRoot
 } from './math';
 
 export {
     clearAll,
     backspace,
-    getResult
+    getResult,
+    writeSymbol
 } from './otherOperations';

@@ -5,6 +5,7 @@ import Display from '../../UI/Display/Display';
 import Button from '../../UI/Button/Button';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import * as actionTypes from '../../../store/actions/actionTypes';
 
 /**
  * @class
@@ -20,7 +21,6 @@ class Calculator extends Component {
      */
     constructor(props) {
         super(props);
-        this.state = this.initialState();
         this.btnsVal = [
             'C', '√', 'x²', '/',
             '7', '8', '9', '*',
@@ -37,100 +37,24 @@ class Calculator extends Component {
      * @param {string} key - name of button, that has been clicked
      * @return {void}
      */
-    keydownEventHandler({key}){
-        if (this.btnsVal.includes(key) ){
+    keydownEventHandler({key}) {
+        if (this.btnsVal.includes(key)) {
             this.clickEventHandler(key);
-        }else if (key === 'Backspace'){
-            this.clickEventHandler('Del');
-        }else if (key === ','){
+        } else if (key === 'Backspace') {
+            this.props.onBackspace();
+        } else if (key === ',') {
             this.clickEventHandler('.');
-        }else if (key === 'Enter'){
-            this.clickEventHandler('=');
+        } else if (key === 'Enter') {
+            this.props.onGetResult();
         }
     }
 
     componentDidMount() {
         document.addEventListener('keydown', this.keydownEventHandler);
-        this.calcOperations = {
-            '/': (prevValue, currentValue) => prevValue / currentValue,
-            '*': (prevValue, currentValue) => prevValue * currentValue,
-            '+': (prevValue, currentValue) => Number(prevValue) + Number(currentValue),
-            '-': (prevValue, currentValue) => prevValue - currentValue,
-            '=': currentValue => currentValue,
-            '√': currentValue => Math.sqrt(currentValue),
-            'x²': currentValue => currentValue**2
-        };
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.keydownEventHandler);
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        !this.state.currentVal && this.setState({currentVal: '0'});
-        !this.state.result && this.setState({result: '0'});
-    }
-
-    /**
-     * @method initialState
-     * @description Method that returns initial state.
-     * @returns {Object} - initial state
-     */
-    initialState() {
-        return {
-            operation: null,
-            currentVal: 0,
-            prevVal: 0,
-        }
-    }
-
-    /**
-     * @method writeNum
-     * @description Method that changes `currentVal` value.
-     * @param {number | string} symbol - symbol that will be add into `currentVal`
-     * @return {void}
-     */
-    writeNum(symbol){
-        const value = (symbol === '.' || `${this.state.currentVal}` !== '0')
-            ? this.state.currentVal  + symbol
-            : symbol;
-        Array.from(value).filter(item => item === '.').length<2 && this.setState({currentVal: value});
-    }
-
-    /**
-     * @method setPrevNumState
-     * @description Set prevent value of `currentVal` state variable.
-     * @return {void}
-     */
-    setPrevNumState(){
-        this.setState(state => {
-            return {
-                currentVal: `${state.currentVal}`.slice(0, -1)
-            }
-        });
-    }
-
-    /**
-     * @method choiceOperation
-     * @description Method that find necessary operation for running math operation and changing current state.
-     * @param {string} symbol - current choose math operation
-     * @return {void}
-     */
-    choiceOperation(symbol){
-        let {operation, currentVal, prevVal} = this.state;
-        if (['√','x²'].includes(symbol)){
-            currentVal = this.calcOperations[symbol](Number(currentVal) || prevVal);
-            operation === '=' ? this.setState({operation: null, currentVal}) : this.setState({currentVal});
-            return;
-        }
-        if (operation){
-            currentVal = this.calcOperations[operation](prevVal, currentVal);
-        }
-        this.setState({
-            currentVal: 0,
-            prevVal: currentVal,
-            operation: symbol
-        });
     }
 
     /**
@@ -143,13 +67,25 @@ class Calculator extends Component {
      */
     clickEventHandler(symbol) {
         if (/(\d|\.)/.test(symbol)) {
-            this.writeNum(symbol);
-        }else if (symbol === 'Del') {
-            this.setPrevNumState();
-        }else if (symbol === 'C') {
-            this.setState(this.initialState());
-        }else{
-            this.choiceOperation(symbol);
+            this.props.onWriteSymbol(symbol);
+        } else if (symbol === 'Del') {
+            this.props.onBackspace();
+        } else if (symbol === 'C') {
+            this.props.onClear();
+        } else if (symbol === 'x²') {
+            this.props.onPow();
+        } else if (symbol === '√') {
+            this.props.onSquareRoot();
+        } else if (symbol === '+') {
+            this.props.onAdd();
+        } else if (symbol === '-') {
+            this.props.onSubtract();
+        } else if (symbol === '*') {
+            this.props.onMultiply();
+        } else if (symbol === '/') {
+            this.props.onDivide();
+        } else if (symbol === '='){
+            this.props.onGetResult();
         }
     }
 
@@ -164,7 +100,7 @@ class Calculator extends Component {
         return (
             <div className={styles.Calculator}>
                 <Display
-                    result={this.state.operation === '=' ? this.state.prevVal : this.state.currentVal}
+                    result={this.props.operation === actionTypes.GET_RESULT ? this.props.result : this.props.currentValue}
                 />
                 <div className={styles.btnsBlock}>
                     {btnsArr}
@@ -176,19 +112,21 @@ class Calculator extends Component {
 
 const mapStateToProps = state => ({
     operation: state.operation,
-    currentValue: state.currentVal,
+    currentValue: state.currentValue,
     result: state.result
 });
 
 const mapDispatchToProps = dispatch => ({
-   onAdd: value => dispatch(actions.add(value)),
-   onSubtract: value => dispatch(actions.subtract(value)),
-   onMultiply: value => dispatch(actions.multiply(value)),
-   onDivide: value => dispatch(actions.divide(value)),
-   onPow: value => dispatch(actions.exponentiation(value)),
-   onClear: () => dispatch(actions.clearAll()),
-   onBackspace: value => dispatch(actions.backspace(value)),
-   onGetResult: value => dispatch(actions.getResult(value))
+    onAdd: () => dispatch(actions.add()),
+    onSubtract: () => dispatch(actions.subtract()),
+    onMultiply: () => dispatch(actions.multiply()),
+    onDivide: () => dispatch(actions.divide()),
+    onPow: () => dispatch(actions.exponentiation()),
+    onClear: () => dispatch(actions.clearAll()),
+    onBackspace: () => dispatch(actions.backspace()),
+    onGetResult: () => dispatch(actions.getResult()),
+    onWriteSymbol: symbol => dispatch(actions.writeSymbol(symbol)),
+    onSquareRoot: () => dispatch(actions.squareRoot())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

@@ -1,26 +1,25 @@
 import * as actionTypes from './actionTypes';
 
-export const add = value => ({
-    type: actionTypes.ADD,
-    value
+export const add = () => ({
+    type: actionTypes.ADD
 });
 
-export const subtract = value => ({
+export const subtract = () => ({
    type: actionTypes.SUBTRACT,
-   value
 });
 
-export const divide = value => ({
+export const divide = () => ({
    type: actionTypes.DIVIDE,
-   value
 });
 
-export const multiply = value => ({
+export const multiply = () => ({
    type: actionTypes.MULTIPLY,
-   value
 });
 
-export const exponentiation = value => ({
-    type: actionTypes.EXPONENTIATION,
-    value
+export const exponentiation = () => ({
+    type: actionTypes.EXPONENTIATION
 });
+
+export const squareRoot = () => ({
+    type: actionTypes.SQUARE_ROOT
+})

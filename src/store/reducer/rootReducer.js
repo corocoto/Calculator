@@ -9,76 +9,110 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD:
-            return addOperation(state, action);
+            return addOperation(state);
         case actionTypes.SUBTRACT:
-            return subtractOperation(state, action);
+            return subtractOperation(state);
         case actionTypes.MULTIPLY:
-            return multiplyOperation(state, action);
+            return multiplyOperation(state);
         case actionTypes.DIVIDE:
-            return divideOperation(state, action);
+            return divideOperation(state);
+        case actionTypes.SQUARE_ROOT:
+            return squareRoot(state);
+        case actionTypes.EXPONENTIATION:
+            return exponentiation(state);
         case actionTypes.GET_RESULT:
-            return getResult(state, action);
+            return getResult(state);
         case actionTypes.CLEAR_ALL:
             return clearAll();
         case actionTypes.BACKSPACE:
-            return backspace(state, action.value);
+            return backspace(state);
+        case actionTypes.WRITE_SYMBOL:
+            return writeSymbol(state, action.symbol)
         default:
             return state;
     }
 };
 
-const calc = (state, action) => {
+const calc = state => {
     switch (state.operation) {
         case actionTypes.ADD:
-            return state.result + action.value;
+            return Number(state.result) + Number(state.currentValue);
         case actionTypes.SUBTRACT:
-            return state.result - action.value;
+            return state.currentValue - state.result;
         case actionTypes.MULTIPLY:
-            return state.result * action.value;
+            return state.result * state.currentValue;
         case actionTypes.DIVIDE:
-            return state.result / action.value;
+            return state.result / state.currentValue;
         default:
-            return action.value;
+            return state.result;
     }
 };
 
-const backspace = (state, value) => ({
+const exponentiation = state => {
+    if (state.result && !state.currentValue) {
+        return {...state, result: state.result ** 2}
+    } else {
+        return {...state, currentValue: state.currentValue ** 2}
+    }
+};
+
+const squareRoot = state => {
+    if (state.result && !state.currentValue) {
+        return {...state, result: Math.sqrt(state.result)}
+    } else {
+        return {...state, currentValue: Math.sqrt(state.currentValue)}
+    }
+};
+
+const backspace = state => ({
     ...state,
-    currentValue: value.slice(0, -1),
+    currentValue: `${state.currentValue}`.length === 1 ? 0 : state.currentValue.slice(0, -1),
 });
 
-const addOperation = (state, action) => ({
+const writeSymbol = (state, symbol) => {
+    const value = symbol === '.' || `${state.currentValue}` !== '0'
+        ? state.currentValue + symbol
+        : symbol;
+    const shouldUpdate = Array.from(value).filter(item => item === '.').length < 2;
+    return {
+        ...state,
+        currentValue: shouldUpdate ? value : state.currentValue
+    };
+};
+
+const addOperation = state => ({
     ...state,
     operation: actionTypes.ADD,
-    currentValue: action.value,
-    result: calc(state, action)
+    currentValue: 0,
+    result: state.operation === actionTypes.ADD ? calc(state) : state.currentValue
 });
 
-const subtractOperation = (state, action) => ({
+const subtractOperation = state => ({
     ...state,
     operation: actionTypes.SUBTRACT,
-    currentValue: action.value,
-    result: calc(state, action)
+    currentValue: 0,
+    result: state.operation === actionTypes.SUBTRACT ? calc(state) : state.currentValue
 });
 
-const multiplyOperation = (state, action) => ({
+const multiplyOperation = state => ({
     ...state,
     operation: actionTypes.MULTIPLY,
-    result: calc(state, action)
+    currentValue: 0,
+    result: state.operation === actionTypes.MULTIPLY ? calc(state) : state.currentValue
 });
 
-const divideOperation = (state, action) => ({
+const divideOperation = state => ({
     ...state,
     operation: actionTypes.DIVIDE,
-    currentValue: action.value,
-    result: calc(state, action)
+    currentValue: 0,
+    result: state.operation === actionTypes.DIVIDE ? calc(state) : state.currentValue
 });
 
-const getResult = (state, action) => ({
+const getResult = state => ({
     ...state,
-    operation: null,
-    currentValue: action.value,
-    result: calc(state, action)
+    operation: actionTypes.GET_RESULT,
+    currentValue: 0,
+    result: calc(state)
 });
 
 const clearAll = () => ({

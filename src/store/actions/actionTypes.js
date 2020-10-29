@@ -10,3 +10,4 @@ export const GET_RESULT = 'GET_RESULT';
 /** Other operations */
 export const CLEAR_ALL = 'CLEAR_ALL';
 export const BACKSPACE = 'BACKSPACE';
+export const WRITE_SYMBOL = 'WRITE_SYMBOL';
