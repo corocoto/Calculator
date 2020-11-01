@@ -76,7 +76,7 @@ const writeSymbol = (state, symbol) => {
     const shouldUpdate = Array.from(value).filter(item => item === '.').length < 2;
     return {
         ...state,
-        currentValue: shouldUpdate ? value : state.currentValue
+        currentValue: shouldUpdate ? Number(value) : Number(state.currentValue)
     };
 };
 
@@ -84,28 +84,28 @@ const addOperation = state => ({
     ...state,
     operation: actionTypes.ADD,
     currentValue: 0,
-    result: state.operation === actionTypes.ADD ? calc(state) : state.currentValue
+    result: state.operation ? calc(state) : state.currentValue
 });
 
 const subtractOperation = state => ({
     ...state,
     operation: actionTypes.SUBTRACT,
     currentValue: 0,
-    result: state.operation === actionTypes.SUBTRACT ? calc(state) : state.currentValue
+    result: state.operation ? calc(state) : state.currentValue
 });
 
 const multiplyOperation = state => ({
     ...state,
     operation: actionTypes.MULTIPLY,
     currentValue: 0,
-    result: state.operation === actionTypes.MULTIPLY ? calc(state) : state.currentValue
+    result: state.operation ? calc(state) : state.currentValue
 });
 
 const divideOperation = state => ({
     ...state,
     operation: actionTypes.DIVIDE,
     currentValue: 0,
-    result: state.operation === actionTypes.DIVIDE ? calc(state) : state.currentValue
+    result: state.operation ? calc(state) : state.currentValue
 });
 
 const getResult = state => ({
