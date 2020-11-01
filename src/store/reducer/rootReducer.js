@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    debugger;
     switch (action.type) {
         case actionTypes.ADD:
             return addOperation(state);
@@ -77,7 +76,7 @@ const writeSymbol = (state, symbol) => {
     const shouldUpdate = Array.from(value).filter(item => item === '.').length < 2;
     return {
         ...state,
-        currentValue: shouldUpdate ? Number(value) : Number(state.currentValue)
+        currentValue: shouldUpdate ? value : state.currentValue
     };
 };
 
