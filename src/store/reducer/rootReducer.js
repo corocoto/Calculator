@@ -7,6 +7,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+    debugger;
     switch (action.type) {
         case actionTypes.ADD:
             return addOperation(state);
@@ -38,7 +39,7 @@ const calc = state => {
         case actionTypes.ADD:
             return Number(state.result) + Number(state.currentValue);
         case actionTypes.SUBTRACT:
-            return state.currentValue - state.result;
+            return state.result - state.currentValue;
         case actionTypes.MULTIPLY:
             return state.result * state.currentValue;
         case actionTypes.DIVIDE:
