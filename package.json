@@ -82,9 +82,7 @@
     "docs": "jsdoc -c jsdoc.json",
     "run-build": "serve -s build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -157,14 +155,9 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.0.28",
-    "@storybook/addon-essentials": "^6.0.28",
-    "@storybook/addon-links": "^6.0.28",
-    "@storybook/react": "^6.0.28",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "jsdoc": "^3.6.6",
-    "prop-types": "^15.7.2",
-    "react-is": "^17.0.1"
+    "prop-types": "^15.7.2"
   }
 }
