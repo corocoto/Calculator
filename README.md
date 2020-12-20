@@ -1,5 +1,7 @@
 # [Calculator](https://corocoto.github.io/Calculator/) :abacus:
- 
+
+[![Tests CI](https://github.com/corocoto/Calculator/workflows/Test/badge.svg)](https://github.com/corocoto/Calculator/actions)
+
 ## Introduction :label:
 
 **Calculator** is a PWA (Progressive Web Application), that allows to end user doing mathematics operation fast and simple, using for it keyboard or computer mouse (or touchpad maybe). 
