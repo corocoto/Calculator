@@ -1,5 +1,5 @@
 /**
- * @version v1.3.0
+ * @version v1.3.1
  * @file Calculator web application
  * @author Artem Gusev <gusev2014russia@mail.ru> (corocoto)
  * @copyright 2019-present Artem Gusev. All rights reserved.
