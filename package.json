@@ -4,6 +4,7 @@
   "author": "Artem Gusev (corocoto) <gusev2014russia@mail.ru>",
   "keywords": [
     "react",
+    "redux",
     "calculator",
     "web-application",
     "web-app"
