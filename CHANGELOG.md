@@ -27,3 +27,11 @@ This file describes notable changes in each version of Calculator application.
 + [ISSUE_TEMPLATE](.github/ISSUE_TEMPLATE) section has been added;
 + [CONTRIBUTING.md](CONTRIBUTING.md) file has been added; 
 + [README.md](README.md) file has been rewritten.
+
+ ## 1.3.1 (March 2021)
+
+ ### Patch changes
+
+ + [`.editorconfig`](.editorconfig) has been added;
+ + Dependencies have been updated;
+ + Unused dependencies have been removed.
